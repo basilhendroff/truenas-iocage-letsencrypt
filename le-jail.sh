@@ -33,6 +33,7 @@ JAIL_NAME="letsencrypt"
 CONFIG_NAME="le-config"
 POOL_PATH=""
 CONFIG_PATH=""
+HPILO_PATH=""
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
@@ -67,11 +68,19 @@ if [ -z "${POOL_PATH}" ]; then
   print_msg 'POOL_PATH defaulting to '$POOL_PATH
 fi
 if [ -z "${CONFIG_PATH}" ]; then
-  CONFIG_PATH="${POOL_PATH}"/apps/acme/config
+  CONFIG_PATH="${POOL_PATH}"/apps/letsencrypt/config
 fi
-if [ "${CONFIG_PATH}" = "${POOL_PATH}" ]
+if [ -z "${HPILO_PATH}" ]; then
+  CONFIG_PATH="${POOL_PATH}"/apps/letsencrypt/hpilo
+fi
+if [ "${CONFIG_PATH}" = "${HPILO_PATH}" ]
 then
-  print_err "CONFIG_PATH must be different from POOL_PATH!"
+  print_err "CONFIG_PATH and HPILO_PATH cannot be the same!"
+  exit 1
+fi
+if [ "${CONFIG_PATH}" = "${POOL_PATH}" ] || [ "${HPILO_PATH}" = "${POOL_PATH}" ]
+then
+  print_err "CONFIG_PATH and HPILO_PATH must be different from POOL_PATH!"
   exit 1
 fi
 
@@ -114,11 +123,15 @@ mkdir -p "${CONFIG_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /config
 iocage fstab -a "${JAIL_NAME}" "${CONFIG_PATH}" /config nullfs rw 0 0
 
+mkdir -p "${HPILO_PATH}"
+iocage exec "${JAIL_NAME}" mkdir -p /hpilo
+iocage fstab -a "${JAIL_NAME}" "${HPILO_PATH}" /hpilo nullfs rw 0 0
+
 #####################################################################
 print_msg "acme.sh download and setup..."
 
-iocage exec "${JAIL_NAME}" "git clone https://github.com/Neilpang/acme.sh.git"
-iocage exec "${JAIL_NAME}" "cd /acme.sh && ./acme.sh --install --config-home /config"
+iocage exec "${JAIL_NAME}" "cd /tmp && git clone https://github.com/Neilpang/acme.sh.git"
+iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config"
 iocage exec "${JAIL_NAME}" sed -i '' "s|md5sum|md5|g" ~/.acme.sh/deploy/fritzbox.sh
 
 #####################################################################
