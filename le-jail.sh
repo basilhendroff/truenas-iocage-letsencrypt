@@ -71,7 +71,7 @@ if [ -z "${CONFIG_PATH}" ]; then
   CONFIG_PATH="${POOL_PATH}"/apps/letsencrypt/config
 fi
 if [ -z "${HPILO_PATH}" ]; then
-  CONFIG_PATH="${POOL_PATH}"/apps/letsencrypt/hpilo
+  HPILO_PATH="${POOL_PATH}"/apps/letsencrypt/hpilo
 fi
 if [ "${CONFIG_PATH}" = "${HPILO_PATH}" ]
 then
