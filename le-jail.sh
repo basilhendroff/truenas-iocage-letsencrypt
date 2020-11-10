@@ -120,10 +120,12 @@ rm /tmp/pkg.json
 print_msg "Directory Creation and Mounting..."
 
 mkdir -p "${CONFIG_PATH}"
+chmod 770 "${CONFIG_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /config
 iocage fstab -a "${JAIL_NAME}" "${CONFIG_PATH}" /config nullfs rw 0 0
 
 mkdir -p "${HPILO_PATH}"
+chmod 770 "${HPILO_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /hpilo
 iocage fstab -a "${JAIL_NAME}" "${HPILO_PATH}" /hpilo nullfs rw 0 0
 
