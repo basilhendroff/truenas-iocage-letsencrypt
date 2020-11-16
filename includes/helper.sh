@@ -65,9 +65,9 @@ print_msg "Writing HPILO config file..."
 
 FQDN="${HOSTNAME}.${DOMAIN}"
 CFG=".${FQDN}.conf"
-echo '[ilo]' > ${CFG}
-echo 'login = "'${LOGIN}'"' >> ${CFG}
-echo 'password = "'${PASSWORD}'"' >> ${CFG}
+echo "[ilo]" > ${CFG}
+echo "login = ${LOGIN}" >> ${CFG}
+echo "password = ${PASSWORD}" >> ${CFG}
 
 chmod 700 ${CFG}
 
