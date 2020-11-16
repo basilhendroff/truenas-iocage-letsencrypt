@@ -1,67 +1,68 @@
 #!/bin/bash
-# A menu driven shell script sample template 
-## ----------------------------------
-# Step #1: Define variables
-# ----------------------------------
-EDITOR=vim
-PASSWD=/etc/passwd
-RED='\033[0;41;30m'
-STD='\033[0;0;39m'
- 
-# ----------------------------------
-# Step #2: User defined function
-# ----------------------------------
-pause(){
-  read -p "Press [Enter] key to continue..." fackEnterKey
+# iLO configuration and setup
+
+print_msg () {
+  echo
+  echo -e "\e[1;32m"$1"\e[0m"
+  echo
 }
 
-one(){
-	echo "one() called"
-        pause
+print_err () {
+  echo -e "\e[1;31m"$1"\e[0m"
+  echo
 }
- 
-# do something in two()
-two(){
-	echo "two() called"
-        pause
-}
- 
-# function to display menus
-show_menus() {
-	clear
-	echo "~~~~~~~~~~~~~~~~~~~~~"	
-	echo " M A I N - M E N U"
-	echo "~~~~~~~~~~~~~~~~~~~~~"
-	echo "1. Set Terminal"
-	echo "2. Reset Terminal"
-	echo "3. Exit"
-}
-# read input from the keyboard and take a action
-# invoke the one() when the user select 1 from the menu option.
-# invoke the two() when the user select 2 from the menu option.
-# Exit when user the user select 3 form the menu option.
-read_options(){
-	local choice
-	read -p "Enter choice [ 1 - 3] " choice
-	case $choice in
-		1) one ;;
-		2) two ;;
-		3) exit 0;;
-		*) echo -e "${RED}Error...${STD}" && sleep 2
-	esac
-}
- 
-# ----------------------------------------------
-# Step #3: Trap CTRL+C, CTRL+Z and quit singles
-# ----------------------------------------------
-trap '' SIGINT SIGQUIT SIGTSTP
- 
-# -----------------------------------
-# Step #4: Main logic - infinite loop
-# ------------------------------------
-while true
-do
- 
-	show_menus
-	read_options
-done
+
+# Check for root privileges
+if ! [ $(id -u) = 0 ]; then
+   print_err "This script must be run with root privileges"
+   exit 1
+fi
+
+#####################################################################
+print_msg "General configuration..."
+
+# Initialize defaults
+HOSTNAME=""
+DOMAIN=""
+LOGIN=""
+PASSWORD=""
+CONFIG_NAME="helper.cfg"
+
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "${SCRIPT}")
+
+# Check for helper.cfg and set configuration
+if ! [ -e "${SCRIPTPATH}"/"${CONFIG_NAME}" ]; then
+  print_err "${SCRIPTPATH}/${CONFIG_NAME} must exist."
+  exit 1
+fi
+. "${SCRIPTPATH}"/"${CONFIG_NAME}"
+
+#####################################################################
+print_msg "Input/Config Sanity checks..."
+
+# Check that necessary variables were set by helper.cfg
+if [ -z "${HOSTNAME}" ]; then
+  print_err 'Configuration error: HOSTNAME must be set'
+  exit 1
+fi
+if [ -z "${DOMAIN}" ]; then
+  print_err 'Configuration error: DOMAIN must be set'
+  exit 1
+fi
+if [ -z "${LOGIN}" ]; then
+  print_err 'Configuration error: LOGIN must be set'
+  exit 1
+fi
+if [ -z "${PASSWORD}" ]; then
+  print_err 'Configuration error: PASSWORD must be set'
+  exit 1
+fi
+
+#####################################################################
+print_msg "Check iLO FQDN name resolution..."
+
+if ! [ping -c 1 some_ip_here &> /dev/null]; then
+  print_err 'Unable to resolve ${HOST}.${DOMAIN} to an IP address'
+  exit 1
+fi
