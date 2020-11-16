@@ -36,6 +36,7 @@ if ! [ -e "${SCRIPTPATH}"/"${CONFIG_NAME}" ]; then
   print_err "${SCRIPTPATH}/${CONFIG_NAME} must exist."
   exit 1
 fi
+chmod 700 "${SCRIPTPATH}"/"${CONFIG_NAME}"
 . "${SCRIPTPATH}"/"${CONFIG_NAME}"
 
 #####################################################################
@@ -60,9 +61,16 @@ if [ -z "${PASSWORD}" ]; then
 fi
 
 #####################################################################
-print_msg "Check iLO FQDN name resolution..."
+print_msg "Writing HPILO config file..."
 
-if ! [ping -c 1 ${HOSTNAME}.${DOMAIN} &> /dev/null]; then
-  print_err 'Unable to resolve ${HOSTNAME}.${DOMAIN} to an IP address'
-  exit 1
-fi
+FQDN="${HOSTNAME}.${DOMAIN}"
+CFG=".${FQDN}.conf"
+echo '[ilo]' > ${CFG}
+echo 'login = "'${LOGIN}'"' >> ${CFG}
+echo 'password = "'${PASSWORD}'"' >> ${CFG}
+
+chmod 700 ${CFG}
+
+print_msg "Check parameters..."
+
+hpilo_cli -c ${CFG} ${FQDN} get_uid_status
