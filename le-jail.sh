@@ -129,6 +129,9 @@ chmod 770 "${HPILO_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /hpilo
 iocage fstab -a "${JAIL_NAME}" "${HPILO_PATH}" /hpilo nullfs rw 0 0
 
+iocage exec "${JAIL_NAME}" mkdir -p /tmp/includes
+iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /tmp/includes nullfs rw 0 0
+
 #####################################################################
 print_msg "acme.sh download and setup..."
 
@@ -143,6 +146,9 @@ iocage exec "${JAIL_NAME}" pip download --dest /tmp python-hpilo
 iocage exec "${JAIL_NAME}" pip install --src /tmp python-hpilo
 
 iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.7/site-packages/hpilo.py
+
+iocage exec "${JAIL_NAME}" cp /tmp/includes/helper.sh /hpilo
+iocage exec "${JAIL_NAME}" cp /tmp/includes/helper.cfg /hpilo
 
 #####################################################################
 print_msg "Cleanup..."
