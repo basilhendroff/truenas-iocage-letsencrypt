@@ -62,7 +62,7 @@ fi
 #####################################################################
 print_msg "Check iLO FQDN name resolution..."
 
-if ! [ping -c 1 some_ip_here &> /dev/null]; then
-  print_err 'Unable to resolve ${HOST}.${DOMAIN} to an IP address'
+if ! [ping -c 1 ${HOSTNAME}.${DOMAIN} &> /dev/null]; then
+  print_err 'Unable to resolve ${HOSTNAME}.${DOMAIN} to an IP address'
   exit 1
 fi
