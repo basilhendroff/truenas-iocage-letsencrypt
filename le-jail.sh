@@ -44,6 +44,7 @@ if ! [ -e "${SCRIPTPATH}"/"${CONFIG_NAME}" ]; then
   exit 1
 fi
 . "${SCRIPTPATH}"/"${CONFIG_NAME}"
+INCLUDES_PATH="${SCRIPTPATH}"/includes
 
 RELEASE=$(freebsd-version | sed "s/STABLE/RELEASE/g" | sed "s/-p[0-9]*//")
 
