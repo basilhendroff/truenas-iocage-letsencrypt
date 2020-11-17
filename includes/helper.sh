@@ -26,6 +26,7 @@ HOSTNAME=""
 DOMAIN=""
 LOGIN=""
 PASSWORD=""
+STAGING=0
 CONFIG_NAME="helper.cfg"
 
 SCRIPT=$(readlink -f "$0")
@@ -64,13 +65,71 @@ fi
 print_msg "Writing HPILO config file..."
 
 FQDN="${HOSTNAME}.${DOMAIN}"
-CFG=".${FQDN}.conf"
+CFG="/hpilo/.${FQDN}.conf"
+
+# Write config file and make it only root accessible
 echo "[ilo]" > ${CFG}
 echo "login = ${LOGIN}" >> ${CFG}
 echo "password = ${PASSWORD}" >> ${CFG}
 
 chmod 700 ${CFG}
 
-print_msg "Check parameters..."
+#####################################################################
+print_msg "FQDN check..."
 
-hpilo_cli -c ${CFG} ${FQDN} get_uid_status
+# Check for DNS resolution
+curl https://${FQDN} &> /dev/null
+if [ $? = 35 ]; then
+  print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
+  exit 1
+fi
+
+# Check for HOSTNAME mismatch
+CHOSTNAME=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "dns_name" | cut -d "'" -f 4)
+if [ ${CHOSTNAME} != ${HOSTNAME} ]; then
+  print_err "HOSTNAME mismatch between ${CONFIG_NAME} (${HOSTNAME}) and iLO (${CHOSTNAME}). Remedy before continuing."
+  exit 1
+fi
+
+# Check for DOMAIN mismatch
+CDOMAIN=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "'domain_name'" | cut -d "'" -f 4)
+if [ ${CDOMAIN} != ${DOMAIN} ]; then
+  print_err "DOMAIN mismatch between ${CONFIG_NAME} (${DOMAIN}) and iLO (${CDOMAIN}). Remedy before continuing."
+  exit 1
+fi
+
+# hpilo_cli -c ${CFG} ${FQDN} get_fw_version | grep "firmware_version"
+
+#####################################################################
+print_msg "Generating CSR..."
+
+CCSR=$(hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality= organization= organizational_unit= common_name=${FQDN} | grep "BEGIN CERTIFICATE REQUEST")
+echo "${CCSR}"
+while [ -z "${CCSR}" ]; do
+  echo "Sleeping 10 seconds..."
+  sleep 10
+  CCSR=$(hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality= organization= organizational_unit= common_name=${FQDN} | grep "BEGIN CERTIFICATE REQUEST")
+  echo "${CCSR}"
+done
+
+CSR="/hpilo/${FQDN}.csr"
+hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality= organization= organizational_unit= common_name=${FQDN} > ${CSR}
+
+#####################################################################
+print_msg "Creating the import script..."
+
+SCR="/hpilo/${FQDN}.sh"
+echo 'CERTFILE="/config/'${FQDN}'/'${FQDN}'.cer"' > ${SCR}
+echo 'hpilo_cli -c '${CFG}' '${FQDN}' import_certificate certificate="$(cat $CERTFILE)"' >> ${SCR}
+chmod +x ${SCR}
+
+#####################################################################
+print_msg "Generating and importing the certificate..."
+if [ ${STAGING} -eq 1 ]; then
+  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --days 1 --staging --reloadcmd ${SCR}
+else
+  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --reloadcmd ${SCR}
+fi
+
+
+
