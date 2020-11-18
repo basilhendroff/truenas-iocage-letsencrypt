@@ -71,7 +71,8 @@ FQDN="${HOSTNAME}.${DOMAIN}"
 
 # Check for DNS resolution
 curl https://${FQDN} 
-if [ $? -ne 60 ] && [ $? -ne 0 ]; then
+CHK=$?
+if [ ${CHK} -ne 60 ] && [ ${CHK} -ne 0 ]; then
   print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
   exit 1
 fi
