@@ -62,9 +62,20 @@ if [ -z "${PASSWORD}" ]; then
 fi
 
 #####################################################################
-print_msg "Writing HPILO config file..."
+print_msg "DNS resolver check..."
 
 FQDN="${HOSTNAME}.${DOMAIN}"
+
+# Check for DNS resolution
+curl https://${FQDN} &> /dev/null
+#if [ $? -eq 35 ]; then
+if [ $? -ne 0 ]; then
+  print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
+  exit 1
+fi
+#####################################################################
+print_msg "Writing HPILO config file..."
+
 CFG="/hpilo/.${FQDN}.conf"
 
 # Write config file and make it only root accessible
@@ -76,14 +87,6 @@ chmod 700 ${CFG}
 
 #####################################################################
 print_msg "FQDN check..."
-
-# Check for DNS resolution
-curl https://${FQDN} &> /dev/null
-#if [ $? -eq 35 ]; then
-if [ $? -ne 0 ]; then
-  print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
-  exit 1
-fi
 
 # Check for HOSTNAME mismatch
 CHOSTNAME=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "dns_name" | cut -d "'" -f 4)
