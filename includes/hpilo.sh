@@ -37,7 +37,10 @@ if ! [ -e "${SCRIPTPATH}"/"${CONFIG_NAME}" ]; then
   print_err "${SCRIPTPATH}/${CONFIG_NAME} must exist."
   exit 1
 fi
+
+# Make the file root readable as it contains passwords
 chmod 700 "${SCRIPTPATH}"/"${CONFIG_NAME}"
+
 . "${SCRIPTPATH}"/"${CONFIG_NAME}"
 
 #####################################################################
@@ -67,9 +70,8 @@ print_msg "DNS resolver check..."
 FQDN="${HOSTNAME}.${DOMAIN}"
 
 # Check for DNS resolution
-curl https://${FQDN} &> /dev/null
-#if [ $? -eq 35 ]; then
-if [ $? -ne 60 ] || [ $? -ne 0 ]; then
+curl https://${FQDN} 
+if [ $? -ne 60 ] && [ $? -ne 0 ]; then
   print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
   exit 1
 fi
@@ -83,21 +85,20 @@ echo "[ilo]" > ${CFG}
 echo "login = ${LOGIN}" >> ${CFG}
 echo "password = ${PASSWORD}" >> ${CFG}
 
+# Make the file root readable as it contains passwords
 chmod 700 ${CFG}
 
 #####################################################################
-print_msg "Credentials check..."
-Login failed.
-IloLoginFailed
+print_msg "Credentials validation..."
 
-CREDCHK=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "IloLoginFailed")
-if [ -n ${CREDCHK} [; then
+hpilo_cli -c ${CFG} ${FQDN} get_fw_version
+if [ $? -ne 0 ]; then
   print_err "Invalid login credentials. Remedy before continuing."
   exit 1
 fi
 
 #####################################################################
-print_msg "FQDN check..."
+print_msg "HOSTNAME and DOMAIN validation..."
 
 # Check for HOSTNAME mismatch
 CHOSTNAME=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "dns_name" | cut -d "'" -f 4)
@@ -112,8 +113,6 @@ if [ ${CDOMAIN} != ${DOMAIN} ]; then
   print_err "DOMAIN mismatch between ${CONFIG_NAME} (${DOMAIN}) and iLO (${CDOMAIN}). Remedy before continuing."
   exit 1
 fi
-
-# hpilo_cli -c ${CFG} ${FQDN} get_fw_version | grep "firmware_version"
 
 #####################################################################
 print_msg "Generating CSR..."
@@ -134,15 +133,15 @@ hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality
 #####################################################################
 print_msg "Creating the import script..."
 
-SCR="/hpilo/${FQDN}.sh"
-echo 'CERTFILE="/config/'${FQDN}'/'${FQDN}'.cer"' > ${SCR}
-echo 'hpilo_cli -c '${CFG}' '${FQDN}' import_certificate certificate="$(cat $CERTFILE)"' >> ${SCR}
-chmod +x ${SCR}
+SCRIPT="/hpilo/${FQDN}.sh"
+echo 'CERTFILE="/config/'${FQDN}'/'${FQDN}'.cer"' > ${SCRIPT}
+echo 'hpilo_cli -c '${CFG}' '${FQDN}' import_certificate certificate="$(cat $CERTFILE)"' >> ${SCRIPT}
+chmod +x ${SCRIPT}
 
 #####################################################################
 print_msg "Generating and importing the certificate..."
 if [ ${STAGING} -eq 1 ]; then
-  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --days 1 --staging --reloadcmd ${SCR}
+  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --days 1 --staging --reloadcmd ${SCRIPT} --force
 else
-  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --reloadcmd ${SCR}
+  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --reloadcmd ${SCRIPT}
 fi
