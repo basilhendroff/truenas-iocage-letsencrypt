@@ -69,7 +69,7 @@ FQDN="${HOSTNAME}.${DOMAIN}"
 # Check for DNS resolution
 curl https://${FQDN} &> /dev/null
 #if [ $? -eq 35 ]; then
-if [ $? -ne 0 ]; then
+if [ $? -ne 60 ] || [ $? -ne 0 ]; then
   print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
   exit 1
 fi
@@ -86,14 +86,21 @@ echo "password = ${PASSWORD}" >> ${CFG}
 chmod 700 ${CFG}
 
 #####################################################################
+print_msg "Credentials check..."
+Login failed.
+IloLoginFailed
+
+CREDCHK=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "IloLoginFailed")
+if [ -n ${CREDCHK} [; then
+  print_err "Invalid login credentials. Remedy before continuing."
+  exit 1
+fi
+
+#####################################################################
 print_msg "FQDN check..."
 
 # Check for HOSTNAME mismatch
 CHOSTNAME=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "dns_name" | cut -d "'" -f 4)
-if [ $? -ne 0 ]; then
-  print_err "Error communication with ${FQDN}. Remedy before continuing."
-  exit 1
-fi
 if [ ${CHOSTNAME} != ${HOSTNAME} ]; then
   print_err "HOSTNAME mismatch between ${CONFIG_NAME} (${HOSTNAME}) and iLO (${CHOSTNAME}). Remedy before continuing."
   exit 1
