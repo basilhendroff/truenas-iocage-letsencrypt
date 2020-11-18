@@ -27,7 +27,7 @@ DOMAIN=""
 LOGIN=""
 PASSWORD=""
 STAGING=0
-CONFIG_NAME="helper.cfg"
+CONFIG_NAME="hpilo.cfg"
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
@@ -79,13 +79,18 @@ print_msg "FQDN check..."
 
 # Check for DNS resolution
 curl https://${FQDN} &> /dev/null
-if [ $? = 35 ]; then
+#if [ $? -eq 35 ]; then
+if [ $? -ne 0 ]; then
   print_err "Problem resolving ${FQDN} to a private IP address. Remedy before continuing."
   exit 1
 fi
 
 # Check for HOSTNAME mismatch
 CHOSTNAME=$(hpilo_cli -c ${CFG} ${FQDN} get_network_settings | grep "dns_name" | cut -d "'" -f 4)
+if [ $? -ne 0 ]; then
+  print_err "Error communication with ${FQDN}. Remedy before continuing."
+  exit 1
+fi
 if [ ${CHOSTNAME} != ${HOSTNAME} ]; then
   print_err "HOSTNAME mismatch between ${CONFIG_NAME} (${HOSTNAME}) and iLO (${CHOSTNAME}). Remedy before continuing."
   exit 1
@@ -105,9 +110,10 @@ print_msg "Generating CSR..."
 
 CCSR=$(hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality= organization= organizational_unit= common_name=${FQDN} | grep "BEGIN CERTIFICATE REQUEST")
 echo "${CCSR}"
+TIMER=15
 while [ -z "${CCSR}" ]; do
-  echo "Sleeping 10 seconds..."
-  sleep 10
+  echo "Sleeping ${TIMER} seconds..."
+  sleep ${TIMER}
   CCSR=$(hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality= organization= organizational_unit= common_name=${FQDN} | grep "BEGIN CERTIFICATE REQUEST")
   echo "${CCSR}"
 done
@@ -130,6 +136,3 @@ if [ ${STAGING} -eq 1 ]; then
 else
   ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --reloadcmd ${SCR}
 fi
-
-
-
