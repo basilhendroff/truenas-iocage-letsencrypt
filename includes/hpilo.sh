@@ -119,7 +119,7 @@ print_msg "Generating CSR..."
 
 CCSR=$(hpilo_cli -c ${CFG} ${FQDN} certificate_signing_request country= state= locality= organization= organizational_unit= common_name=${FQDN} | grep "BEGIN CERTIFICATE REQUEST")
 echo "${CCSR}"
-TIMER=15
+TIMER=30
 while [ -z "${CCSR}" ]; do
   echo "Sleeping ${TIMER} seconds..."
   sleep ${TIMER}
