@@ -46,7 +46,7 @@ chmod 700 "${SCRIPTPATH}"/"${CONFIG_NAME}"
 #####################################################################
 print_msg "Input/Config Sanity checks..."
 
-# Check that necessary variables were set by helper.cfg
+# Check that necessary variables were set by hpilo.cfg
 if [ -z "${HOSTNAME}" ]; then
   print_err 'Configuration error: HOSTNAME must be set'
   exit 1
