@@ -8,7 +8,7 @@ This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to th
 ## Usage
 An acme.sh server including a collection of utilities for issuing and renewing Let's Encrypt certificates for devices on the local network including:
 1. [FRITZ!Box]() (Only tested on a FRITZ!Box 7490, but should work for the majority of non-legacy FRITZ!Box models).
-2. [HP iLO]() (Only tested on a iLO 4 on a HP Gen8 microserver, but should work for all RILOE II/iLO versions up to and including iLO 4).
+2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/HPILO.md) (Only tested on a iLO 4 on a HP Gen8 microserver, but should work for all RILOE II/iLO versions up to and including iLO 4).
 
 Once you've confirmed the installation of the server, click on any of the hyperlinks of interest above for detailed deployment instructions.
 
