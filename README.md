@@ -74,7 +74,7 @@ Support channels:
 Questions or issues about this resource can be raised in [this forum thread]().  
 
 ### To Do
-Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deployment hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, I can't guarantee they will work without modification on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook and the HP iLO python script to make these work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll include it in this resource.
+Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deploy hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, I can't guarantee they will work without modification on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook and the HP iLO python script to make these work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll include it in this resource.
 
 ## Disclaimer
 It's your data. It's your responsibility. This resource is provided as a community service. Use it at your own risk.
