@@ -6,7 +6,7 @@ This script builds a Let's Encrypt server in a TrueNAS jail. It will create a ja
 This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to the EOL status of FreeBSD 11.2, it is unlikely to work reliably with earlier releases of FreeNAS.
 
 ## Usage
-An acme.sh server including a collection of utilities for issuing and renewing Let's Encrypt certificates for various servers and devices on the local network including:
+An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for various servers and devices on the local network including:
 1. [FRITZ!Box]() (Only tested on a FRITZ!Box 7490, but this should work for the majority of non-legacy FRITZ!Box models).
 2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/HPILO.md) (Only tested on iLO 4 on HP Gen8 microservers, but this should work for all RILOE II/iLO versions up to and including iLO 4).
 
