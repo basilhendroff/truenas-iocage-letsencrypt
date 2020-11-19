@@ -64,9 +64,9 @@ Support channels:
 Questions or issues about this resource can be raised in [this forum thread]().  
 
 ### To Do
-Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deployment hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, they're untested. As it is, I've had to tweak the FRITZ!box deployment hook to make it work on FreeNAS. If there is a hook that's of interest, try it. If it works let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll consider including it in this resource.
+Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deployment hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, they have not been tested on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook to make it work on FreeNAS. If there is a hook that's of interest, try it. If it works let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll consider including it in this resource.
 
-Through the use of the /reloadcmd, its possible to issue certificates to other servers and devices not included in the acme.sh deployment hooks. An example of this is HP iLO. There's somewhat more effort required to include external hooks into this resource, but it is possible.
+Through the use of the /reloadcmd, its possible to issue certificates to other servers and devices not included in the acme.sh inventory. An example of this is HP iLO. There's considerably more effort required to include external hooks into this resource, but it is possible.
 
 ## Disclaimer
 It's your data. It's your responsibility. This resource is provided as a community service. Use it at your own risk.
