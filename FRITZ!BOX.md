@@ -19,3 +19,5 @@ NOTE: The acme.sh server will only issue a certificate to a single FRITZ!Box. Fo
 
 3. Issue a certificate using a command of the form shown below. For example, if your DNS provider is Cloudflare:
 `acme.sh --deploy --dns dns_cf -d fritzbox.mydomain.com --deploy-hook fritzbox`
+
+To list the issued certificate `acme.sh --list`. Acme.sh will manage the renewal of the certificate.
