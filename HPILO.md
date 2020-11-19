@@ -24,6 +24,11 @@ Other options with defaults include:
 setenv CF_Token "sdfsdfsdfljlbjkljlkjsdfoiwje"
 setenv CF_Account_ID "xxxxxxxxxxxxx"
 ```
+SIDENOTE: Depending on the shell used `echo "$SHELL"`, note the syntax difference in setting environmental variables:
+```
+export key=value
+setenv key value
+```
 Upon issuing a certificate, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
 
 5. Run the helper script `bash hpilo.sh` to issue a Let's Encrypt certificate to the iLO.
