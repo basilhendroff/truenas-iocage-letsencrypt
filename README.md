@@ -29,7 +29,7 @@ Many of the options are self-explanatory, and all should be adjusted to suit you
 
 In addition, there are some other options which have sensible defaults, but can be adjusted if needed. These are:
 
-- JAIL_NAME: The name of the jail, defaults to `tautulli`.
+- JAIL_NAME: The name of the jail, defaults to `letsencrypt`.
 - POOL_PATH: The path for your data pool. It is set automatically if left blank.
 - DATA_PATH: Data files are stored in this path; defaults to `$POOL_PATH/apps/letsencrypt`.
 - INTERFACE: The network interface to use for the jail. Defaults to `vnet0`.
