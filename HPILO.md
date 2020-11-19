@@ -24,8 +24,13 @@ Other options with defaults include:
 - DNSAPI:   A supported DNS provider for automatic DNS API integration https://github.com/acmesh-official/acme.sh/wiki/dnsapi. The default is `dns_cf` (Cloudflare).
 3. If this is your first deployment, continue with this step, otherwise, skip to the next step. Set up the API credentials for your DNS provider https://github.com/acmesh-official/acme.sh/wiki/dnsapi, but do not issue a certificate yet. For example, for Cloudflare:
 ```
-export CF_Token="sdfsdfsdfljlbjkljlkjsdfoiwje"
-export CF_Account_ID="xxxxxxxxxxxxx"
+setenv CF_Token "sdfsdfsdfljlbjkljlkjsdfoiwje"
+setenv CF_Account_ID "xxxxxxxxxxxxx"
+```
+SIDE NOTE: Depending on the shell used `echo "$SHELL"`, the syntax wll differ when setting environmental variables:
+```
+export key=value
+setenv key value
 ```
 When a certificate is first issued, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
 
