@@ -22,12 +22,12 @@ The mandatory options are:
 Other options with defaults include:
 - STAGING:  While finding your way around this resource, you're encouraged to set STAGING to 1 to avoid hitting Let's Encrypt rate limits. The default is 0.
 - DNSAPI:   A supported DNS provider for automatic DNS API integration https://github.com/acmesh-official/acme.sh/wiki/dnsapi. The default is `dns_cf` (Cloudflare).
-3. If this is your first deployment, continue with this step, otherwise, skip to the next step. Set up the API credentials for your DNS provider https://github.com/acmesh-official/acme.sh/wiki/dnsapi. For example, for Cloudflare:
+3. If this is your first deployment, continue with this step, otherwise, skip to the next step. Set up the API credentials for your DNS provider https://github.com/acmesh-official/acme.sh/wiki/dnsapi, but do not issue a certificate yet. For example, for Cloudflare:
 ```
 export CF_Token="sdfsdfsdfljlbjkljlkjsdfoiwje"
 export CF_Account_ID="xxxxxxxxxxxxx"
 ```
-Upon issuing a certificate, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
+When a certificate is first issued, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
 
 4. Run the helper script `bash hpilo.sh` to issue a Let's Encrypt certificate to the iLO. 
 5. Repeat the above steps for other iLOs on your network.
