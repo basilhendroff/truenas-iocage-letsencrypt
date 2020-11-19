@@ -52,7 +52,7 @@ Once you've downloaded the script and prepared the configuration file, run this 
 
 ### Test
 
-To check your installation, enter your `letsencrypt` jail `iocage console letsencrypt` and check the version of the installed kit.
+To check your installation, enter your Let's Encrypt jail `iocage console letsencrypt` and check the version of the installed kit.
 
 ```
 # acme.sh --version
