@@ -122,9 +122,6 @@ then
 fi
 rm /tmp/pkg.json
 
-# Change the jail default shell from csh to bash
-iocage exec "${JAIL_NAME}" chsh -s /usr/local/bin/bash
-
 #####################################################################
 print_msg "Directory Creation and Mounting..."
 
@@ -162,5 +159,8 @@ iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."
+
+# Change the jail default shell from csh to bash
+iocage exec "${JAIL_NAME}" chsh -s /usr/local/bin/bash
 
 iocage restart "${JAIL_NAME}"
