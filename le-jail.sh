@@ -155,7 +155,7 @@ iocage exec "${JAIL_NAME}" pip install --src /tmp python-hpilo
 iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.7/site-packages/hpilo.py
 
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.sh /hpilo
-#iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.cfg /hpilo
+iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."
