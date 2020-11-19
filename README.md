@@ -5,9 +5,9 @@ This script builds a Let's Encrypt server in a TrueNAS jail. It will create a ja
 This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to the EOL status of FreeBSD 11.2, it is unlikely to work reliably with earlier releases of FreeNAS.
 
 ## Usage
-A bash and python based utility for issuing and renewing Let's Encrypt certificates for the following internal devices:
-1. FRITZ!Box
-2. HP iLO (All RILOE II/iLO versions up to and including iLO 4)
+A collection of utilities for issuing and renewing Let's Encrypt certificates for the following (verified) internal servers and devices:
+1. FRITZ!Box (Only tested on FRITZ!Box 7490, but should work for non-legacy models).
+2. HP iLO (Only tested on iLO 4, but should work for all RILOE II/iLO versions up to and including iLO 4).
 
 ### Prerequisites
 
@@ -65,6 +65,5 @@ Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deploy
 
 Through the use of the /reloadcmd, its possible to issue certificates to other servers and devices not included in the acme.sh deployment hooks. An example of this is HP iLO. There's somewhat more effort required to include external hooks into this resource, but it is possible.
 
-Apart from HP iLO, there exist other 'hooks' that don't form part of the acme.sh kit that can be also integrated into this resource. 
 ## Disclaimer
 It's your data. It's your responsibility. This resource is provided as a community service. Use it at your own risk.
