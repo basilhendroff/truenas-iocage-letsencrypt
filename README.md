@@ -10,7 +10,7 @@ An acme.sh server including a collection of utilities for issuing and renewing L
 1. [FRITZ!Box]() (Only tested on a FRITZ!Box 7490, but should work for the majority of non-legacy FRITZ!Box models).
 2. [HP iLO]() (Only tested on a iLO 4 on a HP Gen8 microserver, but should work for all RILOE II/iLO versions up to and including iLO 4).
 
-Once you've confirmed the installation, click on any of the hyperlinks above for detailed deployment instructions.
+Once you've confirmed the installation of the server, click on any of the hyperlinks of interest above for detailed deployment instructions.
 
 ### Prerequisites
 
@@ -52,6 +52,8 @@ https://github.com/acmesh-official/acme.sh
 v2.8.8
 # hpilo_cli -version
 4.4.1
+# pip --version
+pip 20.2.3 from /usr/local/lib/python3.7/site-packages/pip (python 3.7)
 ```
 
 ## Support and Discussion
