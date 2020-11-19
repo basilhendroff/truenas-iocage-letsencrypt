@@ -31,10 +31,10 @@ setenv key value
 ```
 Upon issuing a certificate, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
 
-5. Run the helper script `bash hpilo.sh` to issue a Let's Encrypt certificate to the iLO.
+5. Run the helper script `bash hpilo.sh` to issue a Let's Encrypt certificate to the iLO. 
 6. Repeat the steps above for other iLOs on your network.
 
-To list all issued certificates `acme.sh --list`.
+To list all issued certificates `acme.sh --list`. Acme.sh will manage the renewal of the certificates.
 
 
 
