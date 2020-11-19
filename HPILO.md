@@ -1,7 +1,7 @@
 # Let's Encrypt HP iLO 
 Before commencing, ensure your iLOs are updated with the latest firmware (iLO UI > Administration > Firmware) and the hostname and domain fields (iLO UI > Network > iLO Dedicated Network Port > General) are configured for each iLO.
 
-1. Configure your DNS resolver to resolve the iLO FQDN to the IP address of the iLO. For example, `ilo.mydomain.com` must resolve to the iLO IP on the internal network.
+1. Configure your local DNS resolver to resolve the iLO FQDN to the IP address of the iLO. For example, `ilo.mydomain.com` must resolve to the iLO IP on the internal network.
 2. Enter the Let's Encrypt jail `iocage console letsencrypt` and change to the hpilo working directory `cd /hpilo`.
 3. Edit the file called `hpilo.cfg` with your favorite text editor. In its minimal form, it would look something like this:
 ```
