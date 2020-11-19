@@ -12,7 +12,13 @@ An acme.sh server including a collection of utilities for issuing and renewing L
 
 Once you've confirmed the installation of the server, click on any of the hyperlinks of interest above for detailed deployment instructions.
 
-### Prerequisites
+### Prerequisites (DNS API)
+
+Your DNS provider must support API access, and acme.sh must support your DNS provider.
+
+https://github.com/acmesh-official/acme.sh/wiki/dnsapi
+
+### Prerequisites (Other)
 
 Although not required, it's recommended to create a Dataset named `apps` with a sub-dataset named `letsencrypt` on your main storage pool.  Many other jail guides also store their configuration and data in subdirectories of `pool/apps/` If this dataset is not present, directory `/apps/letsencrypt` will be created in `$POOL_PATH`.
 
@@ -40,7 +46,7 @@ In addition, there are some other options which have sensible defaults, but can 
 
 ### Execution
 
-Once you've downloaded the script and prepared the configuration file, run this script (`./le-jail.sh`). The script will run for several minutes. When it finishes, your jail will be created and acme.sh along with several deploment tools will be installed.
+Once you've downloaded the script and prepared the configuration file, run this script (`./le-jail.sh`). The script will run for several minutes. When it finishes, your jail will be created and acme.sh along with several deployment tools will be installed.
 
 ### Test
 
@@ -66,9 +72,7 @@ Support channels:
 Questions or issues about this resource can be raised in [this forum thread]().  
 
 ### To Do
-Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deployment hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, they have not been tested on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook to make it work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll consider including it in this resource.
-
-Through the use of the /reloadcmd, its possible to issue certificates to other servers and devices not included in the acme.sh inventory. An example of this is HP iLO. There's considerably more effort required to include external hooks into this resource, but it is possible.
+Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deployment hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, they have not been tested on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook to make it work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll include it in this resource.
 
 ## Disclaimer
 It's your data. It's your responsibility. This resource is provided as a community service. Use it at your own risk.
