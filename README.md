@@ -18,6 +18,8 @@ Your DNS provider must support API access, and acme.sh must support your DNS pro
 
 https://github.com/acmesh-official/acme.sh/wiki/dnsapi
 
+Cloudflare is the default DNS provider for this resource. 
+
 ### Prerequisites (Other)
 
 Although not required, it's recommended to create a Dataset named `apps` with a sub-dataset named `letsencrypt` on your main storage pool.  Many other jail guides also store their configuration and data in subdirectories of `pool/apps/` If this dataset is not present, directory `/apps/letsencrypt` will be created in `$POOL_PATH`.
