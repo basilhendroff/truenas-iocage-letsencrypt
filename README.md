@@ -7,8 +7,8 @@ This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to th
 
 ## Usage
 A collection of utilities for issuing and renewing Let's Encrypt certificates for the following (verified) internal servers and devices:
-1. [FRITZ!Box]() (Only tested on FRITZ!Box 7490, but should work for the majority of non-legacy models).
-2. [HP iLO]() (Only tested on iLO 4 on a HP Gen8 microserver, but should work for all RILOE II/iLO versions up to and including iLO 4).
+1. [FRITZ!Box]() (Only tested on a FRITZ!Box 7490, but should work for the majority of non-legacy FRITZ!Box models).
+2. [HP iLO]() (Only tested on a iLO 4 on a HP Gen8 microserver, but should work for all RILOE II/iLO versions up to and including iLO 4).
 
 Once you've confirmed the installation, click on any of the hyperlinks above for detailed deployment instructions.
 
