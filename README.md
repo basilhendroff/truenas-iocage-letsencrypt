@@ -10,7 +10,7 @@ An acme.sh server and a collection of utilities for issuing and renewing Let's E
 1. [FRITZ!Box]() (Only tested on a FRITZ!Box 7490, but this should work for the majority of non-legacy FRITZ!Box models).
 2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/HPILO.md) (Only tested on iLO 4 on HP Gen8 microservers, but this should work for all RILOE II/iLO versions up to and including iLO 4).
 
-Once you've confirmed the installation of the server, click on any of the hyperlinks of interest above for detailed deployment instructions.
+Once you've confirmed the installation of the acme.sh server, click on any of the above hyperlinks of interest for detailed deployment instructions.
 
 ### Prerequisites (DNS API)
 
