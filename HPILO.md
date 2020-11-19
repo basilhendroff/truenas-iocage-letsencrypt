@@ -1,9 +1,10 @@
 # Let's Encrypt HP iLO 
 ## Preparation
-1. Ensure your iLOs are updated with the latest firmware (iLO UI > Administration > Firmware) and the hostname and domain fields (iLO UI > Network > iLO Dedicated Network Port > General) are configured for each iLO.
-2. Configure your local DNS resolver to resolve the FQDN of each iLO to its IP address of the iLO. For example, `ilo.mydomain.com` must resolve to the iLO IP on the internal network.
+Before undertaking a deployment:
+1. Ensure the iLO is updated with the latest firmware (iLO UI > Administration > Firmware) and the iLO hostname and domain fields (iLO UI > Network > iLO Dedicated Network Port > General) are configured.
+2. Configure your local DNS resolver to resolve the FQDN of the iLO to its IP address. For example, `ilo.mydomain.com` must resolve to the iLO IP on the internal network.
 
-## Instruction
+## Deployment
 1. Enter the Let's Encrypt jail `iocage console letsencrypt` and change to the hpilo working directory `cd /hpilo`.
 2. Edit the file called `hpilo.cfg` with your favorite text editor. In its minimal form, it would look something like this:
 ```
@@ -37,6 +38,3 @@ Upon issuing a certificate, `CF_Token` and `CF_Account_ID` will be saved in `~/.
 5. Repeat the above steps for other iLOs on your network.
 
 To list all issued certificates `acme.sh --list`. Acme.sh will manage the renewal of the certificates.
-
-
-
