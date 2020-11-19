@@ -17,7 +17,7 @@ The mandatory options are:
 Options with defaults:
 - STAGING:  While finding your way around this resource, set STAGING to 1 to avoid hitting Let's Encrypt rate limits. The default is 0.
 - DNSAPI:   A supported DNS provider for automatic DNS API integration https://github.com/acmesh-official/acme.sh/wiki/dnsapi. The default is `dns_cf` (Cloudflare).
-4. If this is your first deployment, continue with this step, otherwise, skip to the next step. Set up the API credentials for your DNS provider. For example, for Cloudflare:
+4. If this is your first deployment, continue with this step, otherwise, skip to the next step. Set up the API credentials for your DNS provider https://github.com/acmesh-official/acme.sh/wiki/dnsapi. For example, for Cloudflare:
 ```
 setenv CF_Token "sdfsdfsdfljlbjkljlkjsdfoiwje"
 setenv CF_Account_ID "xxxxxxxxxxxxx"
