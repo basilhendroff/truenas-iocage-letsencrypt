@@ -56,7 +56,7 @@ v2.8.8
 Support channels:
 1. [acme.sh](https://github.com/acmesh-official/acme.sh)
 2. [python-hpilo](https://github.com/seveas/python-hpilo)
-3. [Let's Encrypt](https://letsencrypt.org/)
+3. [Let's Encrypt Community Forum](https://community.letsencrypt.org/)
 
 Questions or issues about this resource can be raised in [this forum thread]().  
 
