@@ -24,7 +24,7 @@ print_msg "General configuration..."
 # Initialize defaults
 HOSTNAME=""
 DOMAIN=""
-LOGIN=""
+USERNAME=""
 PASSWORD=""
 STAGING=0
 CONFIG_NAME="hpilo.cfg"
@@ -55,8 +55,8 @@ if [ -z "${DOMAIN}" ]; then
   print_err 'Configuration error: DOMAIN must be set'
   exit 1
 fi
-if [ -z "${LOGIN}" ]; then
-  print_err 'Configuration error: LOGIN must be set'
+if [ -z "${USERNAME}" ]; then
+  print_err 'Configuration error: USERNAME must be set'
   exit 1
 fi
 if [ -z "${PASSWORD}" ]; then
@@ -83,7 +83,7 @@ CFG="/hpilo/.${FQDN}.conf"
 
 # Write config file and make it only root accessible
 echo "[ilo]" > ${CFG}
-echo "login = ${LOGIN}" >> ${CFG}
+echo "login = ${USERNAME}" >> ${CFG}
 echo "password = ${PASSWORD}" >> ${CFG}
 
 # Make the file root readable as it contains passwords
