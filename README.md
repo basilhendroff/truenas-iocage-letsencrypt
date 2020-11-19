@@ -18,7 +18,7 @@ Your DNS provider must support API access, and acme.sh must support your DNS pro
 
 https://github.com/acmesh-official/acme.sh/wiki/dnsapi
 
-Cloudflare is the default DNS provider for this resource. 
+Cloudflare is the default DNS provider for this resource, but this can be easily configured to any of the supported providers. 
 
 ### Prerequisites (Other)
 
