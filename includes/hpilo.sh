@@ -27,6 +27,7 @@ DOMAIN=""
 USERNAME=""
 PASSWORD=""
 STAGING=0
+DNSAPI="dns_cf"
 CONFIG_NAME="hpilo.cfg"
 
 SCRIPT=$(readlink -f "$0")
@@ -141,8 +142,8 @@ chmod +x ${SCRIPT}
 
 #####################################################################
 print_msg "Generating and importing the certificate..."
-if [ ${STAGING} -eq 1 ]; then
-  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --days 1 --staging --reloadcmd ${SCRIPT} --force
+if [ ${STAGING} -eq 0 ]; then
+  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns ${DNSAPI} --reloadcmd ${SCRIPT}
 else
-  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns dns_cf --reloadcmd ${SCRIPT}
+  ~/.acme.sh/acme.sh --signcsr --csr ${CSR} --dns ${DNSAPI} --days 1 --staging --reloadcmd ${SCRIPT} --force
 fi
