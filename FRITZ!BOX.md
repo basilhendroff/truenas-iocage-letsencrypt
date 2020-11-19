@@ -17,4 +17,4 @@ When a certificate is first issued, `CF_Token` and `CF_Account_ID` will be saved
 
 NOTE: The acme.sh server will only issue a certificate to a single FRITZ!Box. For more information, refer to [Can acme.sh deploy certs to more than one FRITZ!Box router?](https://community.letsencrypt.org/t/can-acme-sh-deploy-certs-to-more-than-one-fritz-box-router/137854) 
 3. Issue a certificate using a command of the form shown below. For example, if your DNS provider is Cloudflare:
-`acme.sh --deploy --dns dns_cf -d fritzbox.example.com --deploy-hook fritzbox`
+`acme.sh --deploy --dns dns_cf -d fritzbox.mydomain.com --deploy-hook fritzbox`
