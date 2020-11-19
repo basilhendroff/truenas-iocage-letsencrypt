@@ -24,7 +24,7 @@ Other options with defaults include:
 setenv CF_Token "sdfsdfsdfljlbjkljlkjsdfoiwje"
 setenv CF_Account_ID "xxxxxxxxxxxxx"
 ```
-SIDENOTE: Depending on the shell used `echo "$SHELL"`, note the syntax difference in setting environmental variables:
+SIDE NOTE: Depending on the shell used `echo "$SHELL"`, note the syntax difference in setting environmental variables:
 ```
 export key=value
 setenv key value
