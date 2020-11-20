@@ -39,7 +39,7 @@ if ! [ -e "${SCRIPTPATH}"/"${CONFIG_NAME}" ]; then
   exit 1
 fi
 
-# Make the file root readable as it contains passwords
+# Make the file root readable only as it contains passwords
 chmod 700 "${SCRIPTPATH}"/"${CONFIG_NAME}"
 
 . "${SCRIPTPATH}"/"${CONFIG_NAME}"
