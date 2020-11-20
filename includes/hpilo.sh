@@ -33,7 +33,7 @@ CONFIG_NAME="hpilo.cfg"
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
 
-# Check for helper.cfg and set configuration
+# Check for hpilo.cfg and set configuration
 if ! [ -e "${SCRIPTPATH}"/"${CONFIG_NAME}" ]; then
   print_err "${SCRIPTPATH}/${CONFIG_NAME} must exist."
   exit 1
