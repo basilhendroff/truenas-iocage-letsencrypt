@@ -30,7 +30,7 @@ setenv DEPLOY_FRITZBOX_PASSWORD "alakazam"
 setenv DEPLOY_FRITZBOX_URL "https://fritzbox.mydomain.com"
 acme.sh --deploy -d fritzbox.mydomain.com --deploy-hook fritzbox
 ```
-NOTE: One FRITZ!Box can be set up per acme.sh server. It isn't straightforward for the acme.sh server to issue certificates to more than one FRITZ!Box. For more information, refer to the Let's Encrypt Community Forum thread [Can acme.sh deploy certs to more than one FRITZ!Box router?](https://community.letsencrypt.org/t/can-acme-sh-deploy-certs-to-more-than-one-fritz-box-router/137854) 
+NOTE: One FRITZ!Box can be set up per acme.sh server. It isn't straightforward for the acme.sh server to deploy certificates to more than one FRITZ!Box. For more information, refer to the Let's Encrypt Community Forum thread [Can acme.sh deploy certs to more than one FRITZ!Box router?](https://community.letsencrypt.org/t/can-acme-sh-deploy-certs-to-more-than-one-fritz-box-router/137854) 
 
 
 To list the issued certificate `acme.sh --list`. Acme.sh will manage the renewal of the certificate.
