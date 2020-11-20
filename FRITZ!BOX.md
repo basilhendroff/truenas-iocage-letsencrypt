@@ -23,7 +23,7 @@ When a certificate is first issued, `CF_Token` and `CF_Account_ID` will be saved
 ```
 acme.sh --issue --dns dns_cf -d fritzbox.mydomain.com
 ```
-3. Now deploy the certificate to your FRITZ!Box [Deploy the cert to your FRITZ!Box router](https://github.com/acmesh-official/acme.sh/wiki/deployhooks#8-deploy-the-cert-to-your-fritzbox-router). For example:
+3. Now [Deploy the cert to your FRITZ!Box router](https://github.com/acmesh-official/acme.sh/wiki/deployhooks#8-deploy-the-cert-to-your-fritzbox-router). For example:
 ```
 setenv DEPLOY_FRITZBOX_USERNAME "admin"
 setenv DEPLOY_FRITZBOX_PASSWORD "alakazam"
