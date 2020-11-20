@@ -1,6 +1,6 @@
 # A Work in Progress
 # truenas-iocage-letsencrypt
-This script builds a Let's Encrypt server in a TrueNAS jail. It will create a jail, install the latest version of acme.sh and several deploment tools, and store data files outside the jail, so they will not be lost in the event you need to rebuild the jail.  
+This script builds a Let's Encrypt server in a TrueNAS jail. It will create a jail, install the latest version of acme.sh and several deployment tools, and store data files outside the jail, so they will not be lost in the event you need to rebuild the jail.  
 
 ## Status
 This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to the EOL status of FreeBSD 11.2, it is unlikely to work reliably with earlier releases of FreeNAS.
