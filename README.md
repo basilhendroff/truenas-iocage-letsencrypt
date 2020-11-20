@@ -18,25 +18,25 @@ Your DNS provider must support API access, and acme.sh must support your DNS pro
 
 https://github.com/acmesh-official/acme.sh/wiki/dnsapi
 
-Cloudflare is the default DNS provider for the helper scripts in this resource, but this can easily be reconfigured for any of the supported providers. 
-
 ### Prerequisites (Other)
 
 Although not required, it's recommended to create a Dataset named `apps` with a sub-dataset named `letsencrypt` on your main storage pool.  Many other jail guides also store their configuration and data in subdirectories of `pool/apps/` If this dataset is not present, directory `/apps/letsencrypt` will be created in `$POOL_PATH`.
 
 ### Installation
 
-Download the repository to a convenient directory on your TrueNAS system by changing to that directory and running `git clone https://github.com/basilhendroff/truenas-iocage-letsencrypt`. Then change into the new truenas-iocage-tautulli directory and create a file called `le-config` with your favorite text editor. In its minimal form, it would look like this:
+Download the repository to a convenient directory on your TrueNAS system by changing to that directory and running `git clone https://github.com/basilhendroff/truenas-iocage-letsencrypt`. Then change into the new `truenas-iocage-letsencrypt` directory and create a file called `le-config` with your favorite text editor. In its minimal form, it would look like this:
 
 ```
 JAIL_IP="10.1.1.3"
 DEFAULT_GW_IP="10.1.1.1"
+CERT_EMAIL="myname@email.com"
 ```
 
 Many of the options are self-explanatory, and all should be adjusted to suit your needs, but only a few are mandatory. The mandatory options are:
 
-- JAIL_IP is the IP address for your jail. You can optionally add the netmask in CIDR notation (e.g., 192.168.1.199/24). If not specified, the netmask defaults to 24 bits. Values of less than 8 bits or more than 30 bits are invalid.
-- DEFAULT_GW_IP is the address for your default gateway
+- JAIL_IP: The IP address for your jail. You can optionally add the netmask in CIDR notation (e.g., 192.168.1.199/24). If not specified, the netmask defaults to 24 bits. Values of less than 8 bits or more than 30 bits are invalid.
+- DEFAULT_GW_IP: The address for your default gateway.
+- CERT_EMAIL: The email address Let's Encrypt will use to notify you of certificate expiration.
 
 In addition, there are some other options which have sensible defaults, but can be adjusted if needed. These are:
 
