@@ -27,12 +27,13 @@ Other options with defaults include:
 setenv CF_Token "sdfsdfsdfljlbjkljlkjsdfoiwje"
 setenv CF_Account_ID "xxxxxxxxxxxxx"
 ```
+When a certificate is first issued, `CF_Token` and `CF_Account_ID` are saved in `/config/account.conf` and used for subsequent deployments.
+
 SIDE NOTE: The Let's Encrypt jail uses the C shell (csh). When setting environmental variables, use `setenv` rather than `export`. Note the difference in syntax.
 ```
 export key=value
 setenv key value
 ```
-When a certificate is first issued, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
 
 4. Run the helper script `bash hpilo.sh` to issue and deploy a Let's Encrypt certificate to the iLO. 
 5. Repeat the above steps for other iLOs on your network.
