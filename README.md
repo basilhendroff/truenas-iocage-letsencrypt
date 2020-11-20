@@ -29,7 +29,7 @@ Download the repository to a convenient directory on your TrueNAS system by chan
 ```
 JAIL_IP="10.1.1.3"
 DEFAULT_GW_IP="10.1.1.1"
-CERT_EMAIL="myname@email.com"
+CERT_EMAIL="yourname@email.com"
 ```
 
 Many of the options are self-explanatory, and all should be adjusted to suit your needs, but only a few are mandatory. The mandatory options are:
