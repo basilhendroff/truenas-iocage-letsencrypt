@@ -18,6 +18,7 @@ export key=value
 setenv key value
 ```
 When a certificate is first issued, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
+
 2. If this is not your first deployment, just issue a certificate. For example, if your DNS provider is Cloudflare:
 ```
 acme.sh --issue --dns dns_cf -d fritzbox.mydomain.com
