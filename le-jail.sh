@@ -34,7 +34,7 @@ CONFIG_NAME="le-config"
 POOL_PATH=""
 CONFIG_PATH=""
 HPILO_PATH=""
-#CERT_EMAIL=""
+CERT_EMAIL=""
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
@@ -65,10 +65,10 @@ if [ -z "${DEFAULT_GW_IP}" ]; then
   print_err 'Configuration error: DEFAULT_GW_IP must be set'
   exit 1
 fi
-#if [ -z "${CERT_EMAIL}" ]; then
-#  print_err 'Configuration error: CERT_EMAIL must be set'
-#  exit 1
-#fi
+if [ -z "${CERT_EMAIL}" ]; then
+  print_err 'Configuration error: CERT_EMAIL must be set'
+  exit 1
+fi
 if [ -z "${POOL_PATH}" ]; then
   POOL_PATH="/mnt/$(iocage get -p)"
   print_msg 'POOL_PATH defaulting to '$POOL_PATH
@@ -142,8 +142,7 @@ iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /tmp/includes nullfs rw 0 0
 print_msg "acme.sh download and setup..."
 
 iocage exec "${JAIL_NAME}" "cd /tmp && git clone https://github.com/Neilpang/acme.sh.git"
-#iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config --accountemail ${CERT_EMAIL}"
-iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config"
+iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config --accountemail ${CERT_EMAIL}"
 iocage exec "${JAIL_NAME}" sed -i '' "s|md5sum|md5|g" ~/.acme.sh/deploy/fritzbox.sh
 
 #####################################################################
@@ -159,8 +158,5 @@ iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."
-
-# Change the jail default shell from csh to bash
-#iocage exec "${JAIL_NAME}" chsh -s /usr/local/bin/bash
 
 iocage restart "${JAIL_NAME}"
