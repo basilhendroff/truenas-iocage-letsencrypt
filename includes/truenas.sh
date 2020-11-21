@@ -96,6 +96,8 @@ if [ -n "${API_KEY}" ]; then
   echo "api_key = ${API_KEY}" >> ${CFG}
 fi
 echo "connect_host = ${FQDN}" >> ${CFG}
+echo "privkey_path = /config/${FQDN}/${FQDN}.key" >> ${CFG}
+echo "fullchain_path = /config/${FQDN}/fullchain.cer" >> ${CFG}
 
 # Make the file root readable as it contains passwords
 chmod 700 ${CFG}
@@ -105,7 +107,7 @@ exit 1
 print_msg "Generating and importing the certificate..."
 SCRIPT="/root/deploy_freenas.py" 
 if [ ${STAGING} -eq 0 ]; then
-  ~/.acme.sh/acme.sh --issue -d ${FQDN} --dns ${DNSAPI} --reloadcmd ${SCRIPT} --config ${CFG} --force
+  ~/.acme.sh/acme.sh --issue -d ${FQDN} --dns ${DNSAPI} --reloadcmd "${SCRIPT} --config ${CFG}" --force
 else
-  ~/.acme.sh/acme.sh --issue -d ${FQDN} --dns ${DNSAPI} --days 1 --staging --reloadcmd ${SCRIPT} --config ${CFG} --force
+  ~/.acme.sh/acme.sh --issue -d ${FQDN} --dns ${DNSAPI} --days 1 --staging --reloadcmd "${SCRIPT} --config ${CFG}" --force
 fi
