@@ -32,9 +32,7 @@ POOL_PATH=""
 JAIL_NAME="letsencrypt"
 CONFIG_NAME="le-config"
 POOL_PATH=""
-CONFIG_PATH=""
-HPILO_PATH=""
-CERT_EMAIL=""
+LE_PATH=""
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "${SCRIPT}")
@@ -73,20 +71,11 @@ if [ -z "${POOL_PATH}" ]; then
   POOL_PATH="/mnt/$(iocage get -p)"
   print_msg 'POOL_PATH defaulting to '$POOL_PATH
 fi
-if [ -z "${CONFIG_PATH}" ]; then
-  CONFIG_PATH="${POOL_PATH}"/apps/letsencrypt/config
+if [ -z "${LE_PATH}" ]; then
+  LE_PATH="${POOL_PATH}"/apps/letsencrypt
 fi
-if [ -z "${HPILO_PATH}" ]; then
-  HPILO_PATH="${POOL_PATH}"/apps/letsencrypt/hpilo
-fi
-if [ "${CONFIG_PATH}" = "${HPILO_PATH}" ]
-then
-  print_err "CONFIG_PATH and HPILO_PATH cannot be the same!"
-  exit 1
-fi
-if [ "${CONFIG_PATH}" = "${POOL_PATH}" ] || [ "${HPILO_PATH}" = "${POOL_PATH}" ]
-then
-  print_err "CONFIG_PATH and HPILO_PATH must be different from POOL_PATH!"
+if [ "${LE_PATH}" = "${POOL_PATH}" ]; then
+  print_err "LE_PATH must be different from POOL_PATH!"
   exit 1
 fi
 
@@ -125,11 +114,13 @@ rm /tmp/pkg.json
 #####################################################################
 print_msg "Directory Creation and Mounting..."
 
+CONFIG_PATH="${LE_PATH}"/config
 mkdir -p "${CONFIG_PATH}"
 chmod 770 "${CONFIG_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /config
 iocage fstab -a "${JAIL_NAME}" "${CONFIG_PATH}" /config nullfs rw 0 0
 
+HPILO_PATH="${LE_PATH}"/hpilo
 mkdir -p "${HPILO_PATH}"
 chmod 770 "${HPILO_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /hpilo
@@ -158,5 +149,8 @@ iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."
+
+# Don't need /mnt/includes any more, so unmount it
+iocage fstab -r "${JAIL_NAME}" "${INCLUDES_PATH}" /mnt/includes nullfs rw 0 0
 
 iocage restart "${JAIL_NAME}"
