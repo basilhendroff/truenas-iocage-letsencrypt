@@ -89,7 +89,6 @@ CFG="/truenas/${FQDN}"
 
 # Write config file and make it only root accessible
 echo "[deploy]" > ${CFG}
-echo "login = ${USERNAME}" >> ${CFG}
 if [ -n "${PASSWORD}" ]; then
   echo "password = ${PASSWORD}" >> ${CFG}
 fi
