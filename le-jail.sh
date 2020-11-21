@@ -122,6 +122,12 @@ chmod 770 "${HPILO_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /hpilo
 iocage fstab -a "${JAIL_NAME}" "${HPILO_PATH}" /hpilo nullfs rw 0 0
 
+TRUENAS_PATH="${LE_PATH}"/truenas
+mkdir -p "${TRUENAS_PATH}"
+chmod 770 "${TRUENAS_PATH}"
+iocage exec "${JAIL_NAME}" mkdir -p /truenas
+iocage fstab -a "${JAIL_NAME}" "${TRUENAS_PATH}" /truenas nullfs rw 0 0
+
 iocage exec "${JAIL_NAME}" mkdir -p /tmp/includes
 iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /tmp/includes nullfs rw 0 0
 
@@ -142,6 +148,14 @@ iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.
 
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.sh /hpilo
 iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
+
+#####################################################################
+print_msg "deploy-freenas download and setup..."
+
+iocage exec "${JAIL_NAME}" "cd /root && git clone https://github.com/danb35/deploy-freenas"
+
+iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.sh /truenas
+iocage exec "${JAIL_NAME}" cp -n /tmp/includes/truenas.cfg /truenas 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."
