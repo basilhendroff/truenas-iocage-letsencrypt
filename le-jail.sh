@@ -146,7 +146,7 @@ iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
 #####################################################################
 print_msg "Cleanup..."
 
-# Don't need /mnt/includes any more, so unmount it
-iocage fstab -r "${JAIL_NAME}" "${INCLUDES_PATH}" /mnt/includes nullfs rw 0 0
+# Don't need /tmp/includes any more, so unmount it
+iocage fstab -r "${JAIL_NAME}" "${INCLUDES_PATH}" /tmp/includes nullfs rw 0 0
 
 iocage restart "${JAIL_NAME}"
