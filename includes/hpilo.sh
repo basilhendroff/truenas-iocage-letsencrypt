@@ -80,7 +80,7 @@ fi
 #####################################################################
 print_msg "Writing HPILO config file..."
 
-CFG="/hpilo/.${FQDN}.conf"
+CFG="/hpilo/${FQDN}.conf"
 
 # Write config file and make it only root accessible
 echo "[ilo]" > ${CFG}
