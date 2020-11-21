@@ -69,7 +69,7 @@ Support channels:
 2. [python-hpilo](https://github.com/seveas/python-hpilo)
 3. [Let's Encrypt Community Forum](https://community.letsencrypt.org/)
 
-Questions or issues about this resource can be raised in [this forum thread](). You may also find the answer in this [Q & A](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/Q&A.md) 
+Questions or issues about this resource can be raised in [this forum thread](). You may also find this [Q & A](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/Q&A.md) useful.
 
 ### To Do
 Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deploy hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, I can't guarantee they will work without modification on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook and the HP iLO python script to make these work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll include it in this resource.
