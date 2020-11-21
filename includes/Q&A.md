@@ -3,7 +3,7 @@
 
    No. Doing so will overwrite any modifications made to deploy hooks when the installation script was run. More infomation at this Let's Encrypt Community Forum post [Can acme.sh deploy certs to more than one FRITZ!Box router?](https://community.letsencrypt.org/t/can-acme-sh-deploy-certs-to-more-than-one-fritz-box-router/137854/7?u=basilhendroff). To update the Let's Encrypt jail components:
 
-   1. Save `le-config` from the installation.
+   1. Save `le-config` from the original installation.
 
    2. Delete the jail `iocage destroy letsencrypt`. You data will remain intact as it resides outside the jail.
 
