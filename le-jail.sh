@@ -63,10 +63,6 @@ if [ -z "${DEFAULT_GW_IP}" ]; then
   print_err 'Configuration error: DEFAULT_GW_IP must be set'
   exit 1
 fi
-if [ -z "${CERT_EMAIL}" ]; then
-  print_err 'Configuration error: CERT_EMAIL must be set'
-  exit 1
-fi
 if [ -z "${POOL_PATH}" ]; then
   POOL_PATH="/mnt/$(iocage get -p)"
   print_msg 'POOL_PATH defaulting to '$POOL_PATH
@@ -133,7 +129,7 @@ iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /tmp/includes nullfs rw 0 0
 print_msg "acme.sh download and setup..."
 
 iocage exec "${JAIL_NAME}" "cd /tmp && git clone https://github.com/Neilpang/acme.sh.git"
-iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config --accountemail ${CERT_EMAIL}"
+iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config"
 iocage exec "${JAIL_NAME}" sed -i '' "s|md5sum|md5|g" ~/.acme.sh/deploy/fritzbox.sh
 
 #####################################################################
