@@ -85,7 +85,7 @@ fi
 #####################################################################
 print_msg "Writing TrueNAS/FreeNAS config file..."
 
-CFG="/truenas/${FQDN}"
+CFG="/truenas/${FQDN}.conf"
 
 # Write config file and make it only root accessible
 echo "[deploy]" > ${CFG}
