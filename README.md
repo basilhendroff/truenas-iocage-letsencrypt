@@ -5,7 +5,7 @@ This script builds a Let's Encrypt server in a TrueNAS jail. It will create a ja
 This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to the EOL status of FreeBSD 11.2, it is unlikely to work reliably with earlier releases of FreeNAS.
 
 ## Usage
-An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for various servers and devices on the local network including:
+An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for a variety of devices on the local network including:
 1. [FRITZ!Box](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/FRITZ!BOX.md) (Only tested on a FRITZ!Box 7490, but this should work for the majority of non-legacy FRITZ!Box models).
 2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/HPILO.md) (Only tested on iLO 4 on HP Gen8 microservers, but this should work for all RILOE II/iLO versions up to and including iLO 4).
 
@@ -28,22 +28,21 @@ Download the repository to a convenient directory on your TrueNAS system by chan
 ```
 JAIL_IP="10.1.1.3"
 DEFAULT_GW_IP="10.1.1.1"
-CERT_EMAIL="yourname@email.com"
 ```
 
 Many of the options are self-explanatory, and all should be adjusted to suit your needs, but only a few are mandatory. The mandatory options are:
 
 - JAIL_IP: The IP address for your jail. You can optionally add the netmask in CIDR notation (e.g., 192.168.1.199/24). If not specified, the netmask defaults to 24 bits. Values of less than 8 bits or more than 30 bits are invalid.
 - DEFAULT_GW_IP: The address for your default gateway.
-- CERT_EMAIL: The email address Let's Encrypt will use to notify you of certificate expiration.
 
 In addition, there are some other options which have sensible defaults, but can be adjusted if needed. These are:
 
 - JAIL_NAME: The name of the jail, defaults to `letsencrypt`.
 - POOL_PATH: The path for your data pool. It is set automatically if left blank.
-- DATA_PATH: Data files are stored in this path; defaults to `$POOL_PATH/apps/letsencrypt`.
+- LE_PATH: Data files are stored in this path; defaults to `$POOL_PATH/apps/letsencrypt`.
 - INTERFACE: The network interface to use for the jail. Defaults to `vnet0`.
 - VNET: Whether to use the iocage virtual network stack. Defaults to `on`.
+
 
 ### Execution
 
