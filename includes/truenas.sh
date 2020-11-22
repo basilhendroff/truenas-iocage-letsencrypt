@@ -104,7 +104,7 @@ chmod 700 ${CFG}
 
 #####################################################################
 print_msg "Generating and importing the certificate..."
-SCRIPT="/root/deploy_freenas.py" 
+SCRIPT="/root/deploy-freenas/deploy_freenas.py" 
 if [ ${STAGING} -eq 0 ]; then
   ~/.acme.sh/acme.sh --issue -d ${FQDN} --dns ${DNSAPI} --reloadcmd "${SCRIPT} --config ${CFG}" --force
 else
