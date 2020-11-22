@@ -47,7 +47,7 @@ In addition, there are some other options which have sensible defaults, but can 
 
 ### Execution
 
-Once you've downloaded the script and prepared the configuration file, run this script (`./le-jail.sh`). The script will run for several minutes. When it finishes, your jail will be created and acme.sh along with several deployment tools will be installed.
+Once you've downloaded the script and prepared the configuration file, run this script (`script letsencrypt.log ./le-jail.sh`). The script will run for several minutes. When it finishes, your jail will be created and acme.sh along with several deployment tools will be installed.
 
 ### Test
 
