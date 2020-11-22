@@ -103,7 +103,6 @@ echo "fullchain_path = /config/${FQDN}/fullchain.cer" >> ${CFG}
 chmod 700 ${CFG}
 
 #####################################################################
-exit 1
 print_msg "Generating and importing the certificate..."
 SCRIPT="/root/deploy_freenas.py" 
 if [ ${STAGING} -eq 0 ]; then
