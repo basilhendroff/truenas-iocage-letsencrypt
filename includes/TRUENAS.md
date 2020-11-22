@@ -5,7 +5,7 @@ Before undertaking a deployment:
 
 ## Deployment
 1. Enter the Let's Encrypt jail `iocage console letsencrypt` and change to the truenas working directory `cd /truenas`.
-2. Edit the file `truenas.cfg` with your favorite text editor. In its minimal form, for a FreeNAS server, it would look something like:
+2. Edit the file `truenas.cfg` with your favorite text editor. In its minimal form, for a FreeNAS server, it would look something like the following for a FreeNAS server:
 ```
    PASSWORD="alakazam"
    HOSTNAME="freenas"
@@ -17,6 +17,7 @@ Before undertaking a deployment:
    HOSTNAME="truenas"
    DOMAIN="mydomain.com"
 ```
+
    The mandatory options are:
    - USERNAME: Username of the iLO administrator.
    - PASSWORD: The iLO administrator password.
