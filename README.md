@@ -5,10 +5,10 @@ This script builds a Let's Encrypt server in a TrueNAS jail. It will create a ja
 This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to the EOL status of FreeBSD 11.2, it is unlikely to work reliably with earlier releases of FreeNAS.
 
 ## Usage
-An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for a variety of devices on the local network including:
-1. [FRITZ!Box](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/FRITZ!BOX.md) (Only tested on a FRITZ!Box 7490, but this should work for the majority of non-legacy FRITZ!Box models).
-2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/HPILO.md) (Only tested on iLO 4 on HP Gen8 microservers, but this should work for all RILOE II/iLO versions up to and including iLO 4).
-3. [FreeNAS/TrueNAS](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/TRUENAS.md) (Tested on FreeNAS 11.3 and TrueNAS 12.0, but this should work for all versions From 11.1)
+An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for a variety of devices and servers on the local network including:
+1. [FRITZ!Box](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/FRITZ!BOX.md) - Only tested on a FRITZ!Box 7490, but this should work for the majority of non-legacy FRITZ!Box models.
+2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/HPILO.md) - Only tested on iLO 4 on HP Gen8 microservers, but this should work for all RILOE II/iLO versions up to and including iLO 4.
+3. [FreeNAS/TrueNAS](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/TRUENAS.md) - Tested on FreeNAS 11.3 and TrueNAS 12.0, but this should work for all versions From 11.1.
 
 Once you've confirmed the installation of the acme.sh server, click on any of the above hyperlinks of interest for detailed deployment instructions.
 
@@ -74,7 +74,7 @@ Support channels:
 Questions or issues about this resource can be raised in [this forum thread](). You may also find this [Q & A](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/Q&A.md) useful.
 
 ### To Do
-Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deploy hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, as I can't test these, I unable to confirm they will work without modification on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook and the HP iLO python script to make these work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll happily include it in this resource.
+Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deploy hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, as I can't test these, I unable to confirm they will work without modification on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the FRITZ!box deployment hook and the HP iLO python script to make these work on FreeNAS. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll consider including it in this resource.
 
 ## Disclaimer
 It's your data. It's your responsibility. This resource is provided as a community service. Use it at your own risk.
