@@ -141,8 +141,9 @@ iocage exec "${JAIL_NAME}" sed -i '' "s|md5sum|md5|g" ~/.acme.sh/deploy/fritzbox
 #####################################################################
 print_msg "python-hpilo download and setup..."
 
-iocage exec "${JAIL_NAME}" pip download --dest /tmp python-hpilo
-iocage exec "${JAIL_NAME}" pip install --src /tmp python-hpilo
+#iocage exec "${JAIL_NAME}" pip download --dest /tmp python-hpilo
+#iocage exec "${JAIL_NAME}" pip install --src /tmp python-hpilo
+iocage exec "${JAIL_NAME}" pip install python-hpilo
 
 iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.7/site-packages/hpilo.py
 
@@ -153,6 +154,7 @@ iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
 print_msg "deploy-freenas download and setup..."
 
 iocage exec "${JAIL_NAME}" "cd /root && git clone https://github.com/danb35/deploy-freenas"
+iocage exec "${JAIL_NAME}" pip install requests
 
 iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.sh /truenas
 iocage exec "${JAIL_NAME}" cp -n /tmp/includes/truenas.cfg /truenas 2>/dev/null
