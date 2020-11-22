@@ -17,7 +17,6 @@ Before undertaking a deployment:
    HOSTNAME="truenas"
    DOMAIN="mydomain.com"
 ```
-
    The mandatory options are:
    - USERNAME: Username of the iLO administrator.
    - PASSWORD: The iLO administrator password.
