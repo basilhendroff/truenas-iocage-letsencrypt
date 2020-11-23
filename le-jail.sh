@@ -136,13 +136,10 @@ print_msg "acme.sh download and setup..."
 
 iocage exec "${JAIL_NAME}" "cd /tmp && git clone https://github.com/Neilpang/acme.sh.git"
 iocage exec "${JAIL_NAME}" "cd /tmp/acme.sh && ./acme.sh --install --config-home /config"
-iocage exec "${JAIL_NAME}" sed -i '' "s|md5sum|md5|g" ~/.acme.sh/deploy/fritzbox.sh
 
 #####################################################################
 print_msg "python-hpilo download and setup..."
 
-#iocage exec "${JAIL_NAME}" pip download --dest /tmp python-hpilo
-#iocage exec "${JAIL_NAME}" pip install --src /tmp python-hpilo
 iocage exec "${JAIL_NAME}" pip install python-hpilo
 
 iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.7/site-packages/hpilo.py
