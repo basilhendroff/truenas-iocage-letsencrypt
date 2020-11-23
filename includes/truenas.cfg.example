@@ -6,7 +6,7 @@ API_KEY = ""
 HOSTNAME = "truenas"
 DOMAIN = "mydomain.com"
 
-# Set to 1 for testing. This will use the LE staging server to avoid hitting LE rate limits. Set to 0 (default) to deploy a valid cert.
+# Set to 1 for testing. This will use the LE staging server to avoid hitting LE rate limits. Remove or set to 0 (default) to deploy a valid cert.
 STAGING = 1
 
 # Set to a valid DNS Provider (default is Cloudflare). More information on supported providers at https://github.com/acmesh-official/acme.sh/wiki/dnsapi.
