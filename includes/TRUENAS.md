@@ -5,7 +5,7 @@ Before undertaking a deployment:
 
 ## Deployment
 1. Enter the Let's Encrypt jail `iocage console letsencrypt` and change to the truenas working directory `cd /truenas`.
-2. Edit the file `truenas.cfg` with your favorite text editor. In its minimal form, it would look something like the following:
+2. Edit the file `truenas.cfg` with your favorite text editor. In its minimal form, it will look something like the following:
 ```
    API_KEY="1-DXcZ19sZoZFdGATIidJ8vMP6dxk3nHWz3XX876oxS7FospAGMQjkOft0h4itJDSP"
    HOSTNAME="truenas"
