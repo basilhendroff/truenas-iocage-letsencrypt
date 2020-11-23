@@ -18,7 +18,7 @@ Before undertaking a deployment:
    DOMAIN="mydomain.com"
 ```
    The mandatory options are:
-   - API_KEY (PASSWORD): A [generated](https://www.truenas.com/docs/hub/additional-topics/api/#creating-api-keys) API key for TrueNAS or the root password for FreeNAS.
+   - API_KEY or PASSWORD: A [generated](https://www.truenas.com/docs/hub/additional-topics/api/#creating-api-keys) API key for TrueNAS or the root password for FreeNAS.
    - HOSTNAME: The TrueNAS/FreeNAS hostname.
    - DOMAIN:   Your registered domain name.
 
