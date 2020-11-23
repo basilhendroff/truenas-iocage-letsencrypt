@@ -148,7 +148,8 @@ iocage exec "${JAIL_NAME}" pip install python-hpilo
 iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.7/site-packages/hpilo.py
 
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.sh /hpilo
-iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg /hpilo 2>/dev/null
+iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.cfg.example /hpilo
+iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg.example /hpilo/hpilo.cfg 2>/dev/null
 
 #####################################################################
 print_msg "deploy-freenas download and setup..."
@@ -157,7 +158,8 @@ iocage exec "${JAIL_NAME}" "cd /root && git clone https://github.com/danb35/depl
 iocage exec "${JAIL_NAME}" pip install requests
 
 iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.sh /truenas
-iocage exec "${JAIL_NAME}" cp -n /tmp/includes/truenas.cfg /truenas 2>/dev/null
+iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.cfg.example /truenas
+iocage exec "${JAIL_NAME}" cp -n /tmp/includes/truenas.cfg.example /truenas/truenas.cfg 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."
