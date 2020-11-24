@@ -60,6 +60,8 @@ v2.8.8
 4.4.1
 # pip --version
 pip 20.2.3 from /usr/local/lib/python3.7/site-packages/pip (python 3.7)
+# python3 --version
+Python 3.7.9
 ```
 
 ## Support and Discussion
