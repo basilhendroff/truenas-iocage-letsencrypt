@@ -12,7 +12,7 @@ setenv CF_Token "sdfsdfsdfljlbjkljlkjsdfoiwje"
 setenv CF_Account_ID "xxxxxxxxxxxxx"
 acme.sh --issue --dns dns_cf -d fritzbox.mydomain.com
 ```
-When the certificate is issued, `CF_Token` and `CF_Account_ID` will be saved in `~/.acme.sh/account.conf` and used for subsequent deployments.
+When the certificate is issued, `CF_Token` and `CF_Account_ID` will be saved in `/config/account.conf` and used for subsequent deployments.
 
 SIDE NOTE: The Let's Encrypt jail uses the C shell (csh). When setting environmental variables, use `setenv` rather than `export`. Note the difference in syntax.
 ```
