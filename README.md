@@ -74,7 +74,7 @@ Support channels:
 3. [Let's Encrypt Community Forum](https://community.letsencrypt.org/)
 4. [Let's Encrypt with FreeNAS 11.1 and later](https://www.truenas.com/community/resources/lets-encrypt-with-freenas-11-1-and-later.82/)
 
-Questions or issues about this resource can be raised in [this forum thread](). You may also find this [Q & A](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/Q&A.md) useful.
+Questions or issues about this resource can be raised in [this forum thread](https://www.truenas.com/community/threads/lets-encrypt-local-servers-and-devices.88993/). You may also find this [Q & A](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/Q&A.md) useful.
 
 ### To Do
 Apart from supporting the FRITZ!Box, acme.sh comes with a whole bunch of [deploy hooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks) for other devices and servers. However, as I can't test these, I unable to confirm they will work without modification on FreeBSD and FreeBSD embedded systems like FreeNAS. As it is, I've had to tweak the HP iLO python script to make this work on FreeNAS. [Until recently](https://community.letsencrypt.org/t/can-acme-sh-deploy-certs-to-more-than-one-fritz-box-router/137854/9?u=basilhendroff), I've had to do the same with the FRITZ!box deployment hook. If there is a hook that's of interest, try it. If it works, let others know in the discussion area for this resource. If you can make it work with a minor tweak, submit a pull request [here](https://github.com/basilhendroff/truenas-iocage-letsencrypt) and I'll consider including it in this resource.
