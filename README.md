@@ -5,9 +5,11 @@ This script builds a Let's Encrypt server in a TrueNAS jail. It will create a ja
 This script will work with FreeNAS 11.3, and TrueNAS CORE 12 or later. Due to the EOL status of FreeBSD 11.2, it is unlikely to work reliably with earlier releases of FreeNAS.
 
 ## Usage
-An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for several devices on the local network including:
+
+An acme.sh server and a collection of utilities for issuing and renewing Let's Encrypt certificates for a variety of devices and servers on the local network including:
 1. [FRITZ!Box](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/FRITZ!BOX.md) - Only tested on a FRITZ!Box 7490, but this should work for the majority of non-legacy FRITZ!Box models.
 2. [HP iLO](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/HPILO.md) - Only tested on iLO 4 on HP Gen8 microservers, but this should work for all RILOE II/iLO versions up to and including iLO 4.
+3. [FreeNAS/TrueNAS](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/truenas/includes/TRUENAS.md) - Tested on FreeNAS 11.3 and TrueNAS 12.0, but this should work for all versions from 11.1.
 
 Once you've confirmed the installation of the acme.sh server, click on any of the above hyperlinks of interest for detailed deployment instructions.
 
@@ -60,6 +62,8 @@ v2.8.8
 4.4.1
 # pip --version
 pip 20.2.3 from /usr/local/lib/python3.7/site-packages/pip (python 3.7)
+# python3 --version
+Python 3.7.9
 ```
 
 ## Support and Discussion
@@ -68,6 +72,7 @@ Support channels:
 1. [acme.sh](https://github.com/acmesh-official/acme.sh)
 2. [python-hpilo](https://github.com/seveas/python-hpilo)
 3. [Let's Encrypt Community Forum](https://community.letsencrypt.org/)
+4. [Let's Encrypt with FreeNAS 11.1 and later](https://www.truenas.com/community/resources/lets-encrypt-with-freenas-11-1-and-later.82/)
 
 Questions or issues about this resource can be raised in [this forum thread](). You may also find this [Q & A](https://github.com/basilhendroff/truenas-iocage-letsencrypt/blob/main/includes/Q&A.md) useful.
 

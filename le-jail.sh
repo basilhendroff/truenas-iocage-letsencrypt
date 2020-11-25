@@ -94,7 +94,7 @@ print_msg "Jail Creation. Installing packages will take a while..."
 cat <<__EOF__ >/tmp/pkg.json
         {
   "pkgs":[
-  "py37-pip","bash","curl","security/ca_root_nss","git-lite"
+  "py37-pip","python3","bash","curl","security/ca_root_nss","git-lite"
   ]
 }
 __EOF__
@@ -122,6 +122,12 @@ chmod 770 "${HPILO_PATH}"
 iocage exec "${JAIL_NAME}" mkdir -p /hpilo
 iocage fstab -a "${JAIL_NAME}" "${HPILO_PATH}" /hpilo nullfs rw 0 0
 
+TRUENAS_PATH="${LE_PATH}"/truenas
+mkdir -p "${TRUENAS_PATH}"
+chmod 770 "${TRUENAS_PATH}"
+iocage exec "${JAIL_NAME}" mkdir -p /truenas
+iocage fstab -a "${JAIL_NAME}" "${TRUENAS_PATH}" /truenas nullfs rw 0 0
+
 iocage exec "${JAIL_NAME}" mkdir -p /tmp/includes
 iocage fstab -a "${JAIL_NAME}" "${INCLUDES_PATH}" /tmp/includes nullfs rw 0 0
 
@@ -141,6 +147,16 @@ iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.sh /hpilo
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.cfg.example /hpilo
 iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg.example /hpilo/hpilo.cfg 2>/dev/null
+
+#####################################################################
+print_msg "deploy-freenas download and setup..."
+
+iocage exec "${JAIL_NAME}" "cd /root && git clone https://github.com/danb35/deploy-freenas"
+iocage exec "${JAIL_NAME}" pip install requests
+
+iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.sh /truenas
+iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.cfg.example /truenas
+iocage exec "${JAIL_NAME}" cp -n /tmp/includes/truenas.cfg.example /truenas/truenas.cfg 2>/dev/null
 
 #####################################################################
 print_msg "Cleanup..."

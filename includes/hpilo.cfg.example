@@ -1,4 +1,4 @@
-## Username and password of an iLO administrator account.
+# Username and password of an iLO administrator account.
 USERNAME="Administrator"
 PASSWORD="alakazam"
 
