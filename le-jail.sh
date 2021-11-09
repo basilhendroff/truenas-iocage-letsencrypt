@@ -94,7 +94,7 @@ print_msg "Jail Creation. Installing packages will take a while..."
 cat <<__EOF__ >/tmp/pkg.json
         {
   "pkgs":[
-  "py37-pip","python3","bash","curl","security/ca_root_nss","git-lite"
+  "py38-pip","py38-requests","python3","bash","curl","security/ca_root_nss","git-lite"
   ]
 }
 __EOF__
