@@ -152,7 +152,6 @@ iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg.example /hpilo/hpilo.cf
 print_msg "deploy-freenas download and setup..."
 
 iocage exec "${JAIL_NAME}" "cd /root && git clone https://github.com/danb35/deploy-freenas"
-iocage exec "${JAIL_NAME}" pip install requests
 
 iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.sh /truenas
 iocage exec "${JAIL_NAME}" cp /tmp/includes/truenas.cfg.example /truenas
