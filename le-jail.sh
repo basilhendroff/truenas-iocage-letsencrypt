@@ -142,8 +142,6 @@ print_msg "python-hpilo download and setup..."
 
 iocage exec "${JAIL_NAME}" pip install python-hpilo
 
-iocage exec "${JAIL_NAME}" sed -i '' 's|"RC4-SHA:" + ||' /usr/local/lib/python3.7/site-packages/hpilo.py
-
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.sh /hpilo
 iocage exec "${JAIL_NAME}" cp /tmp/includes/hpilo.cfg.example /hpilo
 iocage exec "${JAIL_NAME}" cp -n /tmp/includes/hpilo.cfg.example /hpilo/hpilo.cfg 2>/dev/null
