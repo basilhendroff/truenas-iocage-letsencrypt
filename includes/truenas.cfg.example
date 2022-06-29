@@ -1,13 +1,13 @@
 # Authentication API_KEY (TrueNAS) or PASSWORD (FreeNAS). To generate an API token, refer to https://www.truenas.com/docs/hub/additional-topics/api/#creating-api-keys.
-# PASSWORD = "alakazam"
-API_KEY = ""              
+# PASSWORD="alakazam"
+API_KEY=""              
 
 # The FreeNAS/TrueNAS FQDN is HOSTNAME.DOMAIN e.g. truenas.mydomain.com
-HOSTNAME = "truenas"
-DOMAIN = "mydomain.com"
+HOSTNAME="truenas"
+DOMAIN="mydomain.com"
 
 # Set to 1 for testing. This will use the LE staging server to avoid hitting LE rate limits. Remove or set to 0 (default) to deploy a valid cert.
-STAGING = 1
+STAGING=1
 
 # Set to a valid DNS Provider (default is Cloudflare). More information on supported providers at https://github.com/acmesh-official/acme.sh/wiki/dnsapi.
-# DNSAPI = "dns_cf"
+# DNSAPI="dns_cf"
